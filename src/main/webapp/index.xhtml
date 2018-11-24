@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<h:outputStylesheet library="css" name="bootstrap.min.css"/>
+</h:head> 
+<body> 
+<h:form>
+	<h:panelGrid columns="2">
+	<h:outputLabel value="Nombre" />
+	<h:inputText value="#{alumnoController.alumno.nombre}"/>
+	<h:outputLabel value="Apellido" />
+	<h:inputText value="#{alumnoController.alumno.apellido}"/>
+	<h:outputLabel value="Edad" />
+	<h:inputText value="#{alumnoController.alumno.edad}"/>
+	<h:outputLabel value="email" />
+	<h:inputText value="#{alumnoController.alumno.email}"/>		
+	</h:panelGrid>
+	<h:commandButton action="#{alumnoController.Guardar}" value="Guardar" />
+</h:form>
+<center><h2><h:outputText value="Alumnos" /></h2></center>
+<h:form id="alumnoForm">
+<h:dataTable id="alumnoTable" binding="#{table}" value="#{alumnoController.alumnos}" var="alumno" class="table table-striped">
+	<h:column>
+		<f:facet name="header">Id</f:facet>
+		<h:outputText value="#{table.rowIndex + 1}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Nombre</f:facet>
+		<h:outputText value="#{alumno.nombre}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Apellido</f:facet>
+		<h:outputText value="#{alumno.apellido}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Edad</f:facet>
+		<h:outputText value="#{alumno.edad}"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Email</f:facet>
+		<h:outputText value="#{alumno.email}"/>
+	</h:column> 
+	<h:column>
+		<f:facet name="header">Update</f:facet>
+		<h:commandButton class="btn btn-warning" value="Update"/>
+	</h:column>
+	<h:column>
+		<f:facet name="header">Eliminar</f:facet>
+		<h:commandButton action="#{alumnoController.Eliminar(alumno)}" class="btn btn-danger" value="Eliminar"/>
+	</h:column>
+</h:dataTable>
+</h:form>
+
+</body> 
+</html>
