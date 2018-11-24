@@ -28,18 +28,19 @@ public class AlumnoDAOImpl implements AlumnoDAO {
 	@Override
 	public Alumno buscarAlumnoPorID(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return em.find(Alumno.class, id);
 	}
 
 	@Override
 	public void borrarAlumnoPorID(Long id) {
-		// TODO Auto-generated method stub
+		Alumno alumno =em.find(Alumno.class, id);
+		em.remove(alumno);
 		
 	}
 
 	@Override
 	public void actualizar(Alumno alumno) {
-		// TODO Auto-generated method stub
+		em.merge(alumno);
 		
 	}
 	

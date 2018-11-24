@@ -13,10 +13,10 @@ import com.certificatic.model.Alumno;
 @Named
 @RequestScoped
 public class AlumnoController {
-/*
+
 	@Inject	
 	AlumnoDAO alumnoDAO;
-*/	
+	
 	private Alumno alumno;
 	
 	
@@ -26,19 +26,26 @@ public class AlumnoController {
 		
 		alumno= new Alumno();
 		
+
+		
+	}
+	
+	public List<Alumno> listarAlumnos(){
+		return alumnoDAO.listarAlumnos();
 	}
 
 	public void Guardar() {
 		System.out.println("Alumno: " + alumno);
-		//alumnoDAO.insertarAlumno(alumno);
+		alumnoDAO.insertarAlumno(alumno);
 		alumnos.add(alumno);
 		alumno = new Alumno();
 
 	}
 	
-	public void Eliminar(Alumno alumno) {
-		System.out.println("::: Eliminando: " + alumno);
-		alumnos.remove(alumno);
+	public void Eliminar(Long id) {
+		//System.out.println("::: Eliminando: " + alumno);
+		alumnoDAO.borrarAlumnoPorID(id);
+		//alumnos.remove(alumno);
 		System.out.println("::: Eliminado :::");
 		
 	}
@@ -55,14 +62,15 @@ public class AlumnoController {
 	}
 
 	public List<Alumno> getAlumnos() {
-		//alumnos = alumnoDAO.listarAlumnos();
+		alumnos = alumnoDAO.listarAlumnos();
 		return alumnos;
 	}
 
 	public void setAlumnos(List<Alumno> alumnos) {
+		alumnos = alumnoDAO.listarAlumnos();
 		AlumnoController.alumnos = alumnos;
 	}
-/*
+
 	public AlumnoDAO getAlumnoDAO() {
 		return alumnoDAO;
 	}
@@ -70,7 +78,7 @@ public class AlumnoController {
 	public void setAlumnoDAO(AlumnoDAO alumnoDAO) {
 		this.alumnoDAO = alumnoDAO;
 	}	
-*/
+
 																																																																					
 	
 }
